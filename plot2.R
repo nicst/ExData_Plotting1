@@ -15,14 +15,16 @@ if (!file.exists("household_power_consumption.txt")){
 powerdata <- read.table("household_power_consumption.txt",sep=";",
                         na.strings = '?',header = TRUE)
 
-startDate <- as.POSIXct(as.Date("2007-02-01"))
-endDate <- as.POSIXct(as.Date("2007-02-03"))
+startTime <- as.POSIXct(
+        strptime("2007-02-01 00:00:00",'%Y-%m-%d %H:%M:%S'))
+endTime <- as.POSIXct(
+        strptime("2007-02-02 23:59:59",'%Y-%m-%d %H:%M:%S'))
 
 
 powerdata <- powerdata %>%
         mutate(Time = as.POSIXct(
                 strptime(paste(Date, Time),'%d/%m/%Y %H:%M:%S'))) %>%
-        filter(startDate <= Time & Time < endDate)
+        filter(startTime <= Time & Time <= endTime)
 
 
 

@@ -27,9 +27,15 @@ powerdata <- powerdata %>%
         filter(startTime <= Time & Time <= endTime)
 
 
-### Create histogram of Global Active Power ###
 
-png("plot1.png")
-with(powerdata,hist(Global_active_power,col="red",main="Global Active Power",
-                    xlab="Global Active Power (kilowatts)"))
+### Plot different Energy sub meterings over time ###
+
+png("plot3.png")
+with(powerdata,{
+        plot(Time,Sub_metering_1,type="l",ylab="Energy sub metering");
+        lines(Time,Sub_metering_2,col="red");
+        lines(Time,Sub_metering_3,col="blue");
+        
+})
 dev.off()
+
