@@ -42,10 +42,14 @@ with(powerdata,{
         plot(Time,Voltage,type="l");
 
         # Third plot
+
         plot(Time,Sub_metering_1,type="l",ylab="Energy sub metering");
         lines(Time,Sub_metering_2,col="red");
         lines(Time,Sub_metering_3,col="blue");
-
+        legend("topright",
+               legend=c("sub_metering 1","sub_metering 2","sub_metering 3"),
+               lty=c(1,1),col=c("black","red","blue"));
+        
         # Forth plot
         
         plot(Time,Global_reactive_power,type="l",
